@@ -1,5 +1,6 @@
 import json
 import os
+from risk_free import get_risk_free_rate
 from data_loader import get_option_data
 from model import heston_jump_price_MC
 from calibrate import calibrate
@@ -14,7 +15,7 @@ strike_window = float(input("Enter strike window (+/- around spot): "))
 data = get_option_data(ticker, expiration_index=expiration_index, strike_window=strike_window)
 S0 = data["S0"]
 T = data["T"]
-r = 0.05
+r = get_risk_free_rate()
 calls_df = data["calls_df"]
 expiration = data["expiration"]
 
